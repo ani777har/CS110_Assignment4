@@ -4,8 +4,9 @@ function findFactorial(n){
     for(let i=1; i<=n; i++){
         factorial*=i;
     }
-    console.log("the factorial of " + n + " is equal to " + factorial);
-}
+    return factorial;
+    
+}   
 
 //findFactorial(4)
 
@@ -13,14 +14,14 @@ function findFactorial(n){
 
 //(2)find gcd of two gien integers
 function findGcd(n1, n2){
-    let origin1=n1;
-    let origin2=n2;
-    while(n1%n2>0){
-        temp=n2;
-        n2=n1%n2;
-        n1=temp;   
+    let curnum1=n1;
+    let curnum2=n2;
+    while(curnum1%curnum2>0){
+        temp=curnum2;
+        curnum2=curnum1%curnum2;
+        curnum1=temp;   
     }
-    return n2;
+    return curnum2;
 }
 //console.log("gcd is "  + findGcd(24, 16));
 
@@ -45,7 +46,10 @@ function findHex(num){
     let reverse="";
     let hex="";
     let letters="ABCDEF";
-    while(num%16>0){
+    if(num===0){
+        hex+=0;
+    }
+    while(num/16>0){
         if(num%16>=10){
             reverse+=letters[num%16-10];
         } else {
@@ -56,15 +60,29 @@ function findHex(num){
     for(i=reverse.length-1; i>=0; i--){
         hex+=reverse[i];
     }
+   
     console.log("the corresponding hexadecimal number of " + originnum + " is " + hex);
 
 }
 
-//findHex(34);
+//findHex(0);
+
+function factorialText(num){
+    console.log("the factorial of " + num + " is equal to " + findFactorial(num));
+
+}
+//Factorialtext(5)
+function gcdText(num1, num2){
+    console.log("gcd of " + num1 + " and " + num2 + " is " + findGcd(num1, num2));
+}
+
+
 
 module.exports = {
     findFactorial,
     findGcd,
     findLcm,
-    findHex
+    findHex,
+    factorialText,
+    gcdText
 }
